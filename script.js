@@ -1,20 +1,90 @@
 // Get a reference to the #add-employees-btn element
 const addEmployeesBtn = document.querySelector('#add-employees-btn');
 
+
+
+employeesArray = []
+
+
+
+
 // Collect employee data
 const collectEmployees = function() {
   // TODO: Get user input to create and return an array of employee objects
+  let employee = {firstName:"", lastName:"", salary:0} 
+
+  
+  function continueInput() {
+   
+
+
+    employee.firstName = prompt("What is your FIRST name?");
+    employee.lastName = prompt("What is your LAST name?");
+    employee.salary = parseFloat(prompt("What is your SALARY?(use numbers)")); // parseInt()  "1234.56"
+    
+  }
+  
+continueInput();
+console.log(employee)
+if (isNaN (employee.salary)){
+  alert("Please enter a numerical number")
+  continueInput();
+  
 }
 
-// Display the average salary
-const displayAverageSalary = function(employeesArray) {
-  // TODO: Calculate and display the average salary
+employeesArray.push (employee)
+
+console.log(employeesArray);
+
+let addanother = confirm ("would you like to addd another employee?")
+console.log(addanother);
+
+if (addanother === true){
+  continueInput();
+
+}else {
+  return employeesArray;
+
 }
+
+}
+
+
+
+
+
+
+// Display the average salary
+const displayAverageSalary = function CalculateAverageOfArray(employeesArray) {
+  // TODO: Calculate and display the average salary
+ console.log(employeesArray);
+ 
+ let total = 0  
+
+  for (let i=0; i < employeesArray.length; i++){
+    total += employeesArray[i].salary;}
+    let avg= total / employeesArray.length;
+
+  console.log(total,avg)
+}
+
+
+
+
+
 
 // Select a random employee
 const getRandomEmployee = function(employeesArray) {
   // TODO: Select and display a random employee
+  console.log("----Random Employee------")
+  console.log(employeesArray[Math.floor(Math.random() * employeesArray.length)]);
+
+  var randomIndex = Math.floor(Math.random() * employeesArray.length) //var variable - 
+  var randEmp = employeesArray[randomIndex]
+  console.log(randEmp)
 }
+
+
 
 /*
   ====================
@@ -67,7 +137,7 @@ const trackEmployeeData = function() {
   console.log('==============================');
 
   getRandomEmployee(employees);
-
+// var randomEmp = getRandomEmployee(employees)
   employees.sort(function(a,b) {
     if (a.lastName < b.lastName) {
       return -1;
